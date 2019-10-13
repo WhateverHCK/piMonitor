@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-
 /**
- * Created by huchenkai on 2019/10/3.
+ * Created by huchenkai on 2019/10/13.
  */
 @RestController
 @CrossOrigin
-public class MonitorController {
+public class MainController {
 
     @RequestMapping("/stdin")
     public String executeCommand(String command) {
         String jsonRes = "";
+
         Map<String, String> output = null;
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
             output = CommandExecutor.execute(command);
 
-            ObjectMapper objectMapper = new ObjectMapper();
             jsonRes = objectMapper.writeValueAsString(output);
         } catch (Exception e) {
             e.printStackTrace();
